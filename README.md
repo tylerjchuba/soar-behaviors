@@ -1,7 +1,6 @@
 # Phantom Test Cases 
 The repository that stores the testing library and test cases for Phantom (Splunk SOAR) playbooks. The new updated tool introduces two new libraries  - [soarsdk](https://github.com/tylerjchuba/soarsdk) and [Behave](https://behave.readthedocs.io/en/stable/). 
 
-
 ## Phantom Testing Guiding Philosophy
 The goal of these new changes is to create better controls and consistencies when developing playbooks. A test case **should be able to describe what a playbook does** without the description or details of the playbook itself. This allows future engineers to better understand the intent of a playbook and allows for a more collaborative community. 
 
@@ -10,7 +9,8 @@ To make test cases as easy and readable as possible, we've implemented the Behav
 
 For more information on writing your own steps to use for this library, read this [tutorial](https://behave.readthedocs.io/en/stable/tutorial.html#python-step-implementations).
 
-
+## Extending Library Steps
+By default, Behave will automatically parse and recognize any new files or steps written inside of the `features/steps` directory. It is highly recommended that forks of this repository create new step files within that directory versus overwriting shared community steps.
 
 ## Installation and Setup
 The behave library requires [soarsdk](https://github.com/tylerjchuba/soarsdk) as an installation. 
@@ -197,7 +197,7 @@ You can substitute any of these keywords with **And** as long there is a previou
 
 
 ## Using Scenarios for Simpler test cases  
-You can reduce the amount of scenarios needed for a given test case by **scenario outlines** from the Behave library. This allows a test case to repeat the same scenario multiple times just by changing variables. This is primarily useful for playbooks that categorize and tag either artifact or containers. Below is an example that was built for the demo playbook for conf23. The scenario outline runs for each table entry, substituting the variables provided into the steps.  
+You can reduce the number of scenarios needed for a given test case by **scenario outlines** from the Behave library. This allows a test case to repeat the same scenario multiple times just by changing variables. This is primarily useful for playbooks that categorize and tag either artifact or containers. Below is an example that was built for the demo playbook for conf23. The scenario outline runs for each table entry, substituting the variables provided into the steps.  
 
 ~~~gherkin
         Scenario Outline: Testing known blocked domains
@@ -319,12 +319,12 @@ behave --steps-catalog
 
 # Git Workflows & Procedures
 ## Standard
-To being working on a test case, create a new branch based off of master that's named after the playbook that you're working on. 
+To begin working on a test case, create a new branch based on master that's named after the playbook that you're working on. 
 ~~~bash
 git checkout -b <my_playbook_name>
 ~~~
 
-Once completed with your changes, or you're wanting to share your code with others you need to push your local changes to this repository. You need to start by telling Git which files you would like to send upstream. You can do this using the **git add** command. Do this command for each file you want to include in your commit.  
+Once completed with your changes, or you want to share your code with others you need to push your local changes to this repository. You need to start by telling Git which files you would like to send upstream. You can do this using the **git add** command. Do this command for each file you want to include in your commit.  
 
 ~~~bash
 git add features/<my_playbook_name>.feature
