@@ -48,7 +48,7 @@ def step_impl(context, playbook_name):
     if "ignore_exception" in context.scenario.tags:
         try:
             context.phantom.run_playbooks(context.container)
-        except soarsdk.Exceptions.PlaybookException:
+        except soarsdk.exceptions.PlaybookException:
             pass
     else:
         context.phantom.run_playbooks(context.container)
